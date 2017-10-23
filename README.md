@@ -138,26 +138,26 @@ this. activeUserData then is used in *ngFor="let item ofactiveUserData" ,  this 
 Angular Design
 
 
-<body>
-<app-root>
-<header>
+< body>
+< app-root>
+< header>
 online timesheet report
-</header>
-<nav>
+< /header>
+< nav>
 home
 product
 timesheet
 payment
-</nav>
-<content>
+< /nav>
+< content>
 <a routerlink="/slot">Slot</a>
 <router-outlet></router-outlet>
-</content>
-<footer>
+< /content>
+< footer>
 2017@cc.com
-</footer>
-</app-root> 
-</body>
+< /footer>
+< /app-root> 
+< /body>
  
 
 
