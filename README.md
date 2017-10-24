@@ -158,7 +158,12 @@ payment
 < /footer>
 < /app-root> 
 < /body>
- 
+
+Result
+
+<img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as1.png">
+
+<img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as2.png">
 
 
 
