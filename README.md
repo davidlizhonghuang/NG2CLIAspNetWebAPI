@@ -78,18 +78,17 @@ it means in index.html page, browser parse app-root selector and comes here to o
 
 7, so this templateurl is a div element only, that will be embedded into index.html page
 such as 
-<div class="col-sm-12">
-  <h1>
+< div class="col-sm-12">
+  < h1>
     {{title}}
-  </h1>
-  <nav>
-    <a routerLink="/slot" routerLinkActive="active">Slot</a>
-   </nav>
-<div class=col-sm-4>
-  <router-outlet></router-outlet>
-</div>
-   
- </div>
+  < /h1>
+  < nav>
+    < a routerLink="/slot" routerLinkActive="active">Slot< /a>
+   < /nav>
+< div class=col-sm-4>
+  < router-outlet></router-outlet>
+< /div>
+< /div>
 8, app-root selector will insert this templateurl into index.html page,  it find title data from appcomponent class, it embed router-outlet inside to host routerlink content
 
 9, routerlink atribute should be read from app.module.ts, top level module, to see which compnent is linked and clicked, then this componet content can be inserted into router-outlet
