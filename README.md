@@ -177,6 +177,7 @@ Angular Design
   < /footer>
   < /app-root> 
   < /body>
+  
   </pre>
 
 Result
