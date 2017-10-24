@@ -137,7 +137,7 @@ this. activeUserData then is used in *ngFor="let item ofactiveUserData" ,  this 
 
 Angular Design
 
-
+<pre>
 < body>
 < app-root>
 < header>
@@ -158,6 +158,7 @@ payment
 < /footer>
 < /app-root> 
 < /body>
+</pre>
 
 Result
 
@@ -169,7 +170,7 @@ we can see the DOM tree is the expected result we designed and developed.
 
 2, The page appearance is as below
 
-<img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as2.png">
+<img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as4.png">
 
 
 
