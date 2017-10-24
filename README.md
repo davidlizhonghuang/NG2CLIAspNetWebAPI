@@ -161,9 +161,17 @@ payment
 
 Result
 
-<img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as1.png">
+1, After we put all components together in app.component.ts, we get the final DOM tree as below
+
+<img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as3.png">
+
+we can see the DOM tree is the expected result we designed and developed. 
+
+2, The page appearance is as below
 
 <img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as2.png">
+
+
 
 
 
