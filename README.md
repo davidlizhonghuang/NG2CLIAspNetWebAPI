@@ -5,7 +5,7 @@ I have developed an Asp.Net MVC 5 web portal to manage the online timesheet and 
 It is my time to develop an angular 2 dashboard to manage the timesheet , cash flow and wage payment for this timesheet system. 
 I used angular 2 Node js NPM and visual studio code IIS web server and asp.net Web API2 in visual studio 2017 to develop 
 the report management system based on the portal backend.
-
+<pre>
 Get Started
 
 A, Asp.net Web API
@@ -133,7 +133,7 @@ activeUserData: Promise<string[]>; //promise is important here, so we can return
      }
 this. activeUserData then is used in *ngFor="let item ofactiveUserData" ,  this is how http service consume data from sql server.
 24, transfer data from one component to another isss a very specific in angular 2, you need to define a variable in higher tree , then send data from one lower tree to higher tree, pass this data to another variable in a varialbe in another lower component.
-
+</pre>
 
 Angular Design
 
