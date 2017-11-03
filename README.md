@@ -1,11 +1,12 @@
 # Developing Angluar 2 Front End Web Application with asp.net Web API 
 <pre>
+
 Introduction
 
-I have developed an Asp.Net MVC 5 web portal to manage the online timesheet and wage payment for my family business. Now, 
-It is my time to develop an angular 2 dashboard to manage the timesheet , cash flow and wage payment for this timesheet system. 
-I used angular 2 Node js NPM and visual studio code IIS web server and asp.net Web API2 in visual studio 2017 to develop 
-the report management system based on the portal backend.
+I have developed an Asp.Net MVC 5 web portal to manage the online timesheet, inventory, and wage payment for my family business. Now, 
+It is my time to develop an angular 2 dashboard to manage the timesheet, cash flow, and wage payment for this timesheet system. 
+I used angular 2, Node js, NPM , visual studio code, IIS web server, and asp.net Web API2 in visual studio 2017 to develop 
+the report system based on the portal's backend.
 
 Get Started
 
@@ -15,10 +16,11 @@ Get Started
         2, create some CRUD APIs to be used.
         3, install IIS asp.net core hosting in window component as below
         https://go.microsoft.com/fwlink/?linkid=844461
-        4, restart IIS web serve and publish this asp.net core web APIs to a folder such as publishoutput
-        5, create a virtual directory in IIS web server
-        6, convert this virtual directory to a web application
-        7, open the api link to get json data such as 
+        4, restart IIS web server 
+        5, publish this asp.net core web APIs to a folder such as publishoutput
+        6, create a virtual directory in IIS web server
+        7, convert this virtual directory to a web application
+        8, open the api link to get json data such as 
         http://localhost/TimesheetAPIs/api/home/menus, this will return 
         ["Home","Products","Services","Components","Contacts"]
 
@@ -34,45 +36,47 @@ Get Started
 
 Angular 2 Code in place
 
-  Angular is only doing one thing-Create HTML element and generate a DOM tree as HTML does in angular way
-  HTML page is composed of basic html, head, and body tags . Inside body tag we can add any elements to generate a page. 
-  Angular is doing in its own way to custom tags inside body tags such as <app-root></app-root>
+  Angular is only doing one thing for us, that is to create HTML element and generate a DOM tree as HTMLin angular way.
+  HTML page is composed of basic html, head, and body tags. Inside body tag we can add any elements to generate a page. 
+  Angular is doing in its own way to custom tags inside body tags such as <app-root></app-root> and then bring all child 
+  components into page to create DOM tree. 
 
   Our Angular front deveopment is starting from here
 
       1, create a root app component to insert a top element app-root next to body tag.
       2, after root element is installed inside body tag, we need to install other html elements inside this root angular component
-      3, then we can add event and style to different elements 
-      4, HTML elements want to present business data in web page,angular invents service and http servce to get data from local and     remotely data resources such as files and database. 
-      5, http service is the only way angular communicate with database on web.
+      3, we can add event and style to different elements. 
+      4, HTML elements want to present business data in web page, angular invents http servce to get data from local and remote data              resources such as files and databases. 
+      5, http service is the only way angular can communicate with database on the web.
       6, typescript in angular then can consume this service via component object
       7, typescript uses constructor to inject the dependency into javascript
-      8, this then can be used to push data from dependency into    component to present data in page.
-      9, element is from component, element is composed with a tree structure, top branch can see below branch, lower branch can emit data to higher branch
+      8, this then can be used to push data from dependency into component to present data in page.
+      9, element is from component and is composed with a tree structure, top branch can see lower branch, lower branch can emit data to          higher branch
       10,......
 
   Root component
 
-  Now we understand that root component is a critical component we can get started angualr from here, developing root component needs to build all necessary enironment to generate this root component inside html body tag. so what enviorment is ?
+  Now we understand that root component is a critical component we can get started angualr from here, developing root component needs to   build all necessary enironment to generate this root component inside html body tag. so what the enviorment for angular 2 is ?
  
- 1, needs a html page with this root element such as index.html
-  < body>
-    < app-root>< /app-root>
-  < /body>
+   1, needs a html page such as index.html to install this root element 
+   
+    < body>
+      < app-root>< /app-root>
+    < /body>
 
-  2,When browser calls index.html page, it needs to parse app-root selector.
+  2, when browser calls index.html page, it needs to parse app-root selector.
 
-  3, call app-root component, html first needs to find out it from app.module.ts file, where we import all components here includes the top level component such as 
+  3, call app-root component, html needs to find out this tag from app.module.ts file, where we import all components including the top      level component such as 
     
     import { AppComponent } from './app.component';
 
-  4, Browser then goes to app.component.ts file to find out the AppCOmonent class
+  4, browser then goes to app.component.ts file to find out the AppComonent class
      
      export class AppComponent{
         title = 'Tea Journal Time sheet';
       }
 
-  5, this class has a component in attribute, so we can say appcomponent is a component top-component
+  5, this class has a component as an attribute, so we can say appcomponent is a top-component
 
   6, component includes
      
@@ -85,7 +89,8 @@ Angular 2 Code in place
       it means in index.html page, browser parse app-root selector and comes here to open tempate url and add style in
 
   7, so this templateurl is a div element only, that will be embedded into index.html page
-  such as 
+  
+      such as 
       < div class="col-sm-12">
         < h1>
           {{title}}
@@ -98,50 +103,44 @@ Angular 2 Code in place
       < /div>
       < /div>
       
-  8, app-root selector will insert this templateurl into index.html page,  it find title data from appcomponent class, it embed router-outlet inside to host routerlink content
+  8, app-root selector will insert this templateurl into index.html page,  it finds the title value from appcomponent class and embed        the content into the <router - outlet> to host routerlink content
 
-  9, routerlink atribute should be read from app.module.ts, top level module, to see which compnent is linked and clicked, then this componet content can be inserted into router-outlet
+  9, routerlink attributes should be read from app.module.ts top level module to see which compnent is linked and clicked, then this          componet content can be inserted into router-outlet
 
-  10, /slot link will call slotproduct .ts component , so it goes to app.module.ts to find this component, such as 
+  10, /slot link will call slotproduct.ts component , so it goes to app.module.ts to find this component, such as 
     import {showSlot} from './Product/SlotProduct';
 
-  11, now we click this link, it will call this commpnent and inserted it into router-outlet in index.html page
+  11, click this link, it will call this commpnent and insert it into router-outlet in index.html page
  
-   12, Slotproduct component is called, it will check this from app.module.ts, 
+   12, slotproduct component from product folder is called, it will check this from app.module.ts, 
 
-   13, this slotproduct component is from product folder, slotproducts components
+   13, anglar parses this class showSLot ,finds out this component selector, <slot-prod>,  it will insert app.slot.html into router-            outlet
 
-   14, anglar parse this class showSLot , find out this component selector is <slot-prod> it will insert app.slot.html into router-outlet
+   14, app.slot.html contains data that is from class activeUserData: Promise<string[]>; 
 
-   15, app.slot.html contains data is from class  activeUserData: Promise<string[]>; 
-
-   16,  activeUserData: Promise<string[]> is used to accept the data from service
+   16, activeUserData: Promise<string[]> is used to accept the data from service
 
    17, this service is injected into the constructor of the class
 
-   18, this servce is called when this compone tis called and class is contructued and return promise data 16 params is used to accept
+   18, this angular http service is called when this componet is called and the related class is constructued. class returns promise             data 
 
-   19, this service is from angular http service 
- 
-   20, http service in angular 2 is as below
+   19, http service in angular 2 is as below
 
     var url="http://localhost/TimesheetAPIS/api/home/menus"; 
-
-          let headers = new Headers({ 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers':'*','Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS' });
-
-          let options = new RequestOptions({ headers: headers });
-
-          return this.http.get(url)
+        let headers = new Headers({ 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers':'*','Access-Control-Allow-               Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(url)
           .map(res => res.json()) //must
           .toPromise()
           .catch(this.handleError);
 
-  21, url is the enabcors url from asp.net core in visual studio 2017
+   url is the enabcors url from asp.net core in visual studio 2017
 
-  22, this web servce return promiise data to client via callback function
+  20, this web servce returns promiise data to client via callback function
 
-  activeUserData: Promise<string[]>; //promise is important here, so we can return data as json
-        constructor(private prodService: ProductSlotService) 
+      activeUserData: Promise<string[]>; //promise is important here, so we can return data as json
+       
+       constructor(private prodService: ProductSlotService) 
         { 
          prodService.getAlltimesheet().then
              (
@@ -151,9 +150,10 @@ Angular 2 Code in place
                  }
             );
          }
-    this. activeUserData then is used in *ngFor="let item ofactiveUserData" ,  this is how http service consume data from sql server.
+         
+        this.activeUserData then is used in *ngFor="let item ofactiveUserData" to present the data.
 
-    23, transfer data from one component to another isss a very specific in angular 2, you need to define a variable in higher tree , then send data from one lower tree to higher tree, pass this data to another variable in a varialbe in another lower component.
+    21, transfer data from one component to another is a very topic in angular 2, you need to define a variable in higher level of the tree , then you can send data from one lower tree to higher tree, pass this data to another variable in another lower component.
  
 Angular Design
 
@@ -179,7 +179,7 @@ Angular Design
   < /body>
   
   </pre>
-
+  
 Result
 
   1, After we put all components together in app.component.ts, we get the final DOM tree as below
