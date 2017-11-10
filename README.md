@@ -196,6 +196,9 @@ I built up an action in MVC controller to return a user list from backend as a j
 
 <img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/pagg.png">
 
+<img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/paggg.png">
+
+
 The development steps include
 
   1, generate a new method to return a list of users from SQL server database from repository class
