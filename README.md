@@ -180,7 +180,7 @@ Angular Design
   
   </pre>
   
-Result
+<b>Result</b>
 
   1, After we put all components together in app.component.ts, we get the final DOM tree as below
 
@@ -192,8 +192,85 @@ Result
 
 <img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as4.png">
  
+<b>Pagination example</b>
 
+I built up an action in MVC controller to return a user list from backend as a json. I configure web.config to enable CORS. now, in angular 2 , I built up a tealist component to list vip users with pagination compnent as example image below 
 
+<img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/pagg.png">
+ 
+The development steps include
+
+  1, generate a new method to return a list of users from SQL server database from repository class
+  2, create an action in MVC controller to return a json result of a lst of users
+  3, create a new component with command: 
+  <pre>
+  ng g component tealist
+  </pre>
+  4,create a new data service teadataservice.ts as code below
+  <pre>
+    @Injectable()
+    export class TeaUserService{
+        constructor(private http: Http) { }
+        getAllUserList()
+        {
+            const url = 'http://www.xxx.com/xxx/xxxMemberJson'; 
+            const headers = new Headers(
+              { 'Access-Control-Allow-Origin': '*', 
+              'Access-Control-Allow-Headers':'*',
+              'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS' 
+            });
+            const options = new RequestOptions({ headers: headers });
+          return this.http.get(url)
+          .map(res => res.json())
+          .toPromise()
+          .catch(this.handleError);
+        }
+        private handleError(error: any): Promise<any> {
+            console.error('An error occurred', error); 
+            return Promise.reject(error.message || error);
+          }
+    }
+    </pre>
+    5, register this data service in app.module.ts
+    6, in tealist component to call teadataservice.ts, the code is as below
+    <pre>
+      constructor(private userdataService: TeaUserService) {
+          this.activeUserData = null;
+          userdataService.getAllUserList().then
+           (
+              (ret) => 
+              {
+                 this. activeUserData =  ret;
+                 console.log(this.activeUserData);
+              }
+          );
+      }
+      CDatee(ds: string): Date {
+        return  new Date( 
+            parseInt (ds.replace('/Date(', ''))
+          );
+      }  
+    </pre>
+    
+    7, loop data in the list html page as code below
+    
+    <pre>
+    ...
+     <tr *ngFor="let item of activeUserData.UserList  | paginate: { itemsPerPage: 10, currentPage: p }">
+    <td>{{item.Companyname}}</td>
+    <td>
+    {{CDatee(item.CreatedDate).toISOString().substring(0, 10)}}
+    </td>
+    <td>{{item.Username}}</td>
+    <td>{{item.OfficeTelphone}}</td>
+    <td>{{item.Email}}</td>
+    ... 
+     <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    ...
+    </pre>
+    
+    8, load the page, we get the expected result.
+  
 
 
 
