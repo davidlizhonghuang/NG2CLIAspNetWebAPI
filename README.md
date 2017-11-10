@@ -1,14 +1,14 @@
 # Developing Angluar 2 Front End Web Application with asp.net Web API 
 <pre>
 
-Introduction
+<b>Introduction</b>
 
 I have developed an Asp.Net MVC 5 web portal to manage the online timesheet, inventory, and wage payment for my family business. Now, 
 It is my time to develop an angular 2 dashboard to manage the timesheet, cash flow, and wage payment for this timesheet system. 
 I used angular 2, Node js, NPM , visual studio code, IIS web server, and asp.net Web API2 in visual studio 2017 to develop 
 the report system based on the portal's backend.
 
-Get Started
+<b>Get Started</b>
 
   A, Asp.net Web API
 
@@ -34,7 +34,7 @@ Get Started
         3, open command prompt to run ng serve command that can watch the change I made in visual studio code 
         4, test the angular 2 page in web browser with URL from ng serve such as http://localhost:4200 
 
-Angular 2 Code in place
+<b>Angular 2 Code in place</b>
 
   Angular is only doing one thing for us, that is to create HTML element and generate a DOM tree as HTMLin angular way.
   HTML page is composed of basic html, head, and body tags. Inside body tag we can add any elements to generate a page. 
@@ -54,7 +54,7 @@ Angular 2 Code in place
       9, element is from component and is composed with a tree structure, top branch can see lower branch, lower branch can emit data to          higher branch
       10,......
 
-  Root component
+ <b>Root component</b>
 
   Now we understand that root component is a critical component we can get started angualr from here, developing root component needs to   build all necessary enironment to generate this root component inside html body tag. so what the enviorment for angular 2 is ?
  
@@ -155,7 +155,7 @@ Angular 2 Code in place
 
     21, transfer data from one component to another is a very topic in angular 2, you need to define a variable in higher level of the tree , then you can send data from one lower tree to higher tree, pass this data to another variable in another lower component.
  
-Angular Design
+<b>Angular Design</b>
 
   < body>
   < app-root>
@@ -178,8 +178,6 @@ Angular Design
   < /app-root> 
   < /body>
   
-  </pre>
-  
 <b>Result</b>
 
   1, After we put all components together in app.component.ts, we get the final DOM tree as below
@@ -189,20 +187,22 @@ Angular Design
   we can see the DOM tree is the expected result we designed and developed. 
 
   2, The page appearance is as below
-<img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as4.png">
+
+  <img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as4.png">
+
 <b>Pagination example</b>
+
 I built up an action in MVC controller to return a user list from backend as a json. I configure web.config to enable CORS. now, in angular 2 , I built up a tealist component to list vip users with pagination compnent as example image below 
+
 <img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/pagg.png">
+
 The development steps include
 
   1, generate a new method to return a list of users from SQL server database from repository class
   2, create an action in MVC controller to return a json result of a lst of users
   3, create a new component with command: 
-  <pre>
-  ng g component tealist
-  </pre>
+        ng g component tealist
   4,create a new data service teadataservice.ts as code below
-  <pre>
     @Injectable()
     export class TeaUserService{
         constructor(private http: Http) { }
@@ -225,10 +225,9 @@ The development steps include
             return Promise.reject(error.message || error);
           }
     }
-    </pre>
     5, register this data service in app.module.ts
     6, call teadataservice.ts in tealist component, the code is as below
-    <pre>
+   
       constructor(private userdataService: TeaUserService) {
           this.activeUserData = null;
           userdataService.getAllUserList().then
@@ -245,9 +244,9 @@ The development steps include
             parseInt (ds.replace('/Date(', ''))
           );
       }  
-    </pre>
+   
     7, loop data in the list html page as code below
-    <pre>
+    
     ...
      <tr *ngFor="let item of activeUserData.UserList  | paginate: { itemsPerPage: 10, currentPage: p }">
     <td>{{item.Companyname}}</td>
@@ -260,9 +259,9 @@ The development steps include
     ... 
      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     ...
-    </pre>
+   
     8, load the page, we get the expected result.
-  
+   </pre>
 
 
 
