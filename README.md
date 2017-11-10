@@ -9,9 +9,7 @@ I used angular 2, Node js, NPM , visual studio code, IIS web server, and asp.net
 the report system based on the portal's backend.
 
 <b>Get Started</b>
-
   A, Asp.net Web API
-
         1, develop a new asp.net core Web API project in VS 2017
         2, create some CRUD APIs to be used.
         3, install IIS asp.net core hosting in window component as below
@@ -23,9 +21,7 @@ the report system based on the portal's backend.
         8, open the api link to get json data such as 
         http://localhost/TimesheetAPIs/api/home/menus, this will return 
         ["Home","Products","Services","Components","Contacts"]
-
   B, Angular 2 Front end
-
         1, create an angular2 folder and install angualr 2 project template with npm command as below
             ⦁	npm install -g @angular/cli
             ⦁	ng new TimesheetReport
@@ -35,14 +31,11 @@ the report system based on the portal's backend.
         4, test the angular 2 page in web browser with URL from ng serve such as http://localhost:4200 
 
 <b>Angular 2 Code in place</b>
-
   Angular is only doing one thing for us, that is to create HTML element and generate a DOM tree as HTMLin angular way.
   HTML page is composed of basic html, head, and body tags. Inside body tag we can add any elements to generate a page. 
   Angular is doing in its own way to custom tags inside body tags such as <app-root></app-root> and then bring all child 
   components into page to create DOM tree. 
-
   Our Angular front deveopment is starting from here
-
       1, create a root app component to insert a top element app-root next to body tag.
       2, after root element is installed inside body tag, we need to install other html elements inside this root angular component
       3, we can add event and style to different elements. 
@@ -54,42 +47,28 @@ the report system based on the portal's backend.
       9, element is from component and is composed with a tree structure, top branch can see lower branch, lower branch can emit data to          higher branch
       10,......
 
- <b>Root component</b>
-
+<b>Root component</b>
   Now we understand that root component is a critical component we can get started angualr from here, developing root component needs to   build all necessary enironment to generate this root component inside html body tag. so what the enviorment for angular 2 is ?
- 
-   1, needs a html page such as index.html to install this root element 
-   
+ 1, needs a html page such as index.html to install this root element 
     < body>
       < app-root>< /app-root>
     < /body>
-
   2, when browser calls index.html page, it needs to parse app-root selector.
-
-  3, call app-root component, html needs to find out this tag from app.module.ts file, where we import all components including the top      level component such as 
-    
+  3, call app-root component, html needs to find out this tag from app.module.ts file, where we import all components including the top      level component such as   
     import { AppComponent } from './app.component';
-
-  4, browser then goes to app.component.ts file to find out the AppComonent class
-     
+  4, browser then goes to app.component.ts file to find out the AppComonent class  
      export class AppComponent{
         title = 'Tea Journal Time sheet';
       }
-
   5, this class has a component as an attribute, so we can say appcomponent is a top-component
-
-  6, component includes
-     
+  6, component includes  
      @Component({
         selector: 'app-root',
         templateUrl: './app.component.html',
         styleUrls: ['./app.component.css']
       })
-      
       it means in index.html page, browser parse app-root selector and comes here to open tempate url and add style in
-
   7, so this templateurl is a div element only, that will be embedded into index.html page
-  
       such as 
       < div class="col-sm-12">
         < h1>
@@ -101,45 +80,30 @@ the report system based on the portal's backend.
       < div class=col-sm-4>
         < router-outlet></router-outlet>
       < /div>
-      < /div>
-      
+      < /div> 
   8, app-root selector will insert this templateurl into index.html page,  it finds the title value from appcomponent class and embed        the content into the <router - outlet> to host routerlink content
-
   9, routerlink attributes should be read from app.module.ts top level module to see which compnent is linked and clicked, then this          componet content can be inserted into router-outlet
-
   10, /slot link will call slotproduct.ts component , so it goes to app.module.ts to find this component, such as 
     import {showSlot} from './Product/SlotProduct';
-
   11, click this link, it will call this commpnent and insert it into router-outlet in index.html page
- 
-   12, slotproduct component from product folder is called, it will check this from app.module.ts, 
-
-   13, anglar parses this class showSLot ,finds out this component selector, <slot-prod>,  it will insert app.slot.html into router-            outlet
-
-   14, app.slot.html contains data that is from class activeUserData: Promise<string[]>; 
-
-   16, activeUserData: Promise<string[]> is used to accept the data from service
-
-   17, this service is injected into the constructor of the class
-
-   18, this angular http service is called when this componet is called and the related class is constructued. class returns promise             data 
-
-   19, http service in angular 2 is as below
-
-    var url="http://localhost/TimesheetAPIS/api/home/menus"; 
+  12, slotproduct component from product folder is called, it will check this from app.module.ts, 
+  13, anglar parses this class showSLot ,finds out this component selector, <slot-prod>,  it will insert app.slot.html into router-            outlet
+  14, app.slot.html contains data that is from class activeUserData: Promise<string[]>; 
+  15, activeUserData: Promise<string[]> is used to accept the data from service
+  16, this service is injected into the constructor of the class
+  17, this angular http service is called when this componet is called and the related class is constructued. class returns promise             data 
+  18, http service in angular 2 is as below
+   var url="http://localhost/TimesheetAPIS/api/home/menus"; 
         let headers = new Headers({ 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers':'*','Access-Control-Allow-               Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS' });
         let options = new RequestOptions({ headers: headers });
         return this.http.get(url)
           .map(res => res.json()) //must
           .toPromise()
           .catch(this.handleError);
-
    url is the enabcors url from asp.net core in visual studio 2017
+  19, this web servce returns promiise data to client via callback function
 
-  20, this web servce returns promiise data to client via callback function
-
-      activeUserData: Promise<string[]>; //promise is important here, so we can return data as json
-       
+      activeUserData: Promise<string[]>;     
        constructor(private prodService: ProductSlotService) 
         { 
          prodService.getAlltimesheet().then
@@ -150,13 +114,10 @@ the report system based on the portal's backend.
                  }
             );
          }
-         
         this.activeUserData then is used in *ngFor="let item ofactiveUserData" to present the data.
-
-    21, transfer data from one component to another is a very topic in angular 2, you need to define a variable in higher level of the tree , then you can send data from one lower tree to higher tree, pass this data to another variable in another lower component.
+   20, transfer data from one component to another is a very topic in angular 2, you need to define a variable in higher level of the tree , then you can send data from one lower tree to higher tree, pass this data to another variable in another lower component.
  
 <b>Angular Design</b>
-
   < body>
   < app-root>
   < header>
@@ -179,7 +140,6 @@ the report system based on the portal's backend.
   < /body>
   
 <b>Result</b>
-
   1, After we put all components together in app.component.ts, we get the final DOM tree as below
 
 <img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as3.png">
@@ -198,9 +158,7 @@ I built up an action in MVC controller to return a user list from backend as a j
 
 <img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/paggg.png">
 
-
 The development steps include
-
   1, generate a new method to return a list of users from SQL server database from repository class
   2, create an action in MVC controller to return a json result of a lst of users
   3, create a new component with command: 
@@ -230,7 +188,6 @@ The development steps include
     }
     5, register this data service in app.module.ts
     6, call teadataservice.ts in tealist component, the code is as below
-   
       constructor(private userdataService: TeaUserService) {
           this.activeUserData = null;
           userdataService.getAllUserList().then
@@ -247,9 +204,7 @@ The development steps include
             parseInt (ds.replace('/Date(', ''))
           );
       }  
-   
     7, loop data in the list html page as code below
-    
     ...
      <tr *ngFor="let item of activeUserData.UserList  | paginate: { itemsPerPage: 10, currentPage: p }">
     <td>{{item.Companyname}}</td>
@@ -262,8 +217,14 @@ The development steps include
     ... 
      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     ...
-   
     8, load the page, we get the expected result.
+       
+  <b>Sidebar in Angualr 2</b>
+  
+Sidebar is the popular menu for mobile. Angular 2 definetely gives us a way to develop a nice sidebar for mobile menu as the example i developed below
+    <img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/mon.png">
+We need to use ngx-bootstrap sidebar component in app.component.ts and then use bootstrap css classes to enable this feature.
+
    </pre>
 
 
