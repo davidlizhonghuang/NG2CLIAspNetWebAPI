@@ -189,15 +189,10 @@ Angular Design
   we can see the DOM tree is the expected result we designed and developed. 
 
   2, The page appearance is as below
-
 <img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/as4.png">
- 
 <b>Pagination example</b>
-
 I built up an action in MVC controller to return a user list from backend as a json. I configure web.config to enable CORS. now, in angular 2 , I built up a tealist component to list vip users with pagination compnent as example image below 
-
 <img src="https://github.com/davidlizhonghuang/NG2CLIAspNetWebAPI/blob/master/pagg.png">
- 
 The development steps include
 
   1, generate a new method to return a list of users from SQL server database from repository class
@@ -232,7 +227,7 @@ The development steps include
     }
     </pre>
     5, register this data service in app.module.ts
-    6, in tealist component to call teadataservice.ts, the code is as below
+    6, call teadataservice.ts in tealist component, the code is as below
     <pre>
       constructor(private userdataService: TeaUserService) {
           this.activeUserData = null;
@@ -251,9 +246,7 @@ The development steps include
           );
       }  
     </pre>
-    
     7, loop data in the list html page as code below
-    
     <pre>
     ...
      <tr *ngFor="let item of activeUserData.UserList  | paginate: { itemsPerPage: 10, currentPage: p }">
@@ -268,7 +261,6 @@ The development steps include
      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     ...
     </pre>
-    
     8, load the page, we get the expected result.
   
 
